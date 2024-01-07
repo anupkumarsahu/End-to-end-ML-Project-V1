@@ -8,7 +8,7 @@ __license__ = "MIT"
 
 REPO_NAME = "End-to-end-ML-Project-V1"
 AUTHOR_USER_NAME = "anupkumarsahu"
-SRC_REPO = "cnnClassifier"
+SRC_REPO = "mlProject"
 AUTHOR_EMAIL = "anup.sahu@gmail.com"
 
 
@@ -31,7 +31,7 @@ setup(
     version=__version__,
     author=AUTHOR_USER_NAME,
     author_email=AUTHOR_EMAIL,
-    description="A small python package for CNN app",
+    description="A python package for ML Ops",
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}",
     project_urls={
         "Bug Tracker": f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}/issues",
