@@ -4,10 +4,11 @@ numpy
 scikit_learn
 matplotlib
 python-box==6.0.2
-pyYAML
+pyYAML~=6.0.1
 ensure==1.0.2
 joblib
 types-PyYAML
 Flask
 Flask-cors
+setuptools~=68.2.2
 -e .
