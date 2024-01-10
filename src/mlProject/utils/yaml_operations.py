@@ -1,15 +1,15 @@
 import json
 import os
 from pathlib import Path
-
-import joblib
-from box import ConfigBox
-from ensure import ensure_annotations
-import yaml
-from box.exceptions import BoxValueError
 from typing import Any
 
-from src.mlProject.logging import logger
+import joblib
+import yaml
+from box import ConfigBox
+from box.exceptions import BoxValueError
+from ensure import ensure_annotations
+
+from mlProject.logging import logger
 
 
 @ensure_annotations
@@ -103,7 +103,7 @@ def load_bin(path: Path) -> Any:
 
     Returns:
         Any: _description_
-    """    
+    """
     data = joblib.load(path)
     logger.info(f"binary file loaded from: {path}")
     return data
@@ -118,6 +118,6 @@ def get_size(path: Path) -> str:
 
     Returns:
         str: _description_
-    """    
+    """
     size_in_kb = round(os.path.getsize(path) / 1024)
     return f"~ {size_in_kb} KB"
