@@ -5,10 +5,12 @@ from mlProject.logging import logger
 
 class DataValidation:
     def __init__(self, config: DataValidationConfig):
+        logger.debug("Instiating DataValidation class.")
         self.config = config
+        logger.debug("DataValidation class initialized.")
         
     def validate_all_columns(self) -> bool:
-        logger.info("Validation all columns")
+        logger.debug("Entered into validate_all_columns method of DataValidation class.")
         try:
             validation_status = True
             
@@ -26,6 +28,9 @@ class DataValidation:
                     validation_status = True
                     with open(self.config.status_file, 'w') as f:
                         f.write(f"Validation status: {validation_status}")
+                        
+            logger.debug("Exiting validate_all_columns method of DataValidation class.")
+            
             return validation_status
                 
             

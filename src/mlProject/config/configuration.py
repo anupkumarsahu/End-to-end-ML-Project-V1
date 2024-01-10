@@ -1,6 +1,7 @@
 from mlProject.constants import *
-from mlProject.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from mlProject.entity.config_entity import DataIngestionConfig, DataTransformationConfig, DataValidationConfig
 from mlProject.utils.yaml_operations import create_directories, read_yaml
+from mlProject.logging import logger
 
 
 class ConfigurationManager:
@@ -10,13 +11,17 @@ class ConfigurationManager:
         param_filepath=PARAM_FILE_PATH,
         schema_filepath=SCHEMA_FILE_PATH,
     ):
+        logger.debug("Instiating ConfigurationManager class")
         self.config = read_yaml(config_filepath)
         self.param = read_yaml(param_filepath)
         self.schema = read_yaml(schema_filepath)
 
         create_directories([self.config.artifacts_root])
+        
+        logger.debug("Instiation of ConfigurationManager class completed successfully")
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
+        logger.debug("Entering into get_data_ingestion_config method of ConfigurationManager class")
         config = self.config.data_ingestion
 
         create_directories([config.root_dir])
@@ -28,9 +33,13 @@ class ConfigurationManager:
             unzip_dir=config.unzip_dir,
         )
 
+        logger.debug("Exiting get_data_ingestion_config method of ConfigurationManager class")
+        
         return data_ingestion_config
 
     def get_data_validation_config(self) -> DataValidationConfig:
+        logger.debug("Entering into get_data_validation_config method of ConfigurationManager class")
+        
         config = self.config.data_validation
         schema = self.schema.COLUMNS
 
@@ -43,4 +52,22 @@ class ConfigurationManager:
             all_schema=schema,
         )
 
+        logger.debug("Exiting get_data_validation_config method of ConfigurationManager class")
+        
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        logger.debug("Entering into get_data_transformation_config method of ConfigurationManager class")
+        
+        config = self.config.data_transformation
+        
+        create_directories([config.root_dir])
+        
+        data_transformation_config = DataTransformationConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+        )
+        
+        logger.debug("Exiting get_data_transformation_config method of ConfigurationManager class")
+        
+        return data_transformation_config
