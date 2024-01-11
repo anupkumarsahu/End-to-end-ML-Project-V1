@@ -1,5 +1,8 @@
 import os
 from flask import Flask, render_template, request
+import numpy as np
+
+from mlProject.pipeline.prediction import PredictionPipeline
 
 app = Flask(__name__)
 
